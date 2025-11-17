@@ -60,6 +60,8 @@ pipeline {
                             docker pull ${IMAGE_NAME}:${IMAGE_TAG}
                             echo 'Image versi terbaru berhasil ditarik'
 
+                            docker builder prune --force
+
                             echo 'Memulai ulang docker...'
                             docker run -d --name flask-app -p 80:5152 ${IMAGE_NAME}:${IMAGE_TAG}
                             echo 'Berhasil memulai ulang docker'
