@@ -23,3 +23,6 @@ terraform/*.pem
 
 # File metadata yang tidak penting
 .DS_Store
+
+# Exclude .dockerignore
+.dockerignore
