@@ -49,14 +49,14 @@ pipeline {
                 sshagent(credentials: ['ec2-id']) {
                     sh """
                         ssh -o StrictHostkeyChecking=no ${EC2_USER}@${IP_EC2} <<-EOF
-                            docker stop \$(docker ps -q --filter ancestor=${IMAGE_NAME}:${IMAGE_TAG})
-                            docker rm \$(docker ps -aq --filter ancestor=${IMAGE_NAME}:${IMAGE_TAG})
+                            docker ps -q --filter ancestor=${IMAGE_NAME}:${IMAGE_TAG} | xargs -r docker stop
+                            docker ps -aq --filter ancestor=${IMAGE_NAME}:${IMAGE_TAG} | xargs -r docker rm
 
                             docker image prune -f
 
                             docker pull ${IMAGE_NAME}:${IMAGE_TAG}
 
-                            docker run -d --name flask-app -p 80:5152 ${IMAGE_NAME}:${IMAGE_TAG} EOF
+                            docker run -d --name flask-app -p 80:5152 ${IMAGE_NAME}:${IMAGE_TAG}
                     """
                 }
             }
