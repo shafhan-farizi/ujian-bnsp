@@ -49,8 +49,8 @@ pipeline {
                 sshagent(credentials: ['ec2-id']) {
                     sh """
                         ssh -o StrictHostkeyChecking=no ${EC2_USER}@${IP_EC2} <<-EOF
-                            docker stop $(docker ps -q --filter ancestor=${IMAGE_NAME}:${IMAGE_TAG}) || true
-                            docker rm $(docker ps -aq --filter ancestor=${IMAGE_NAME}:${IMAGE_TAG}) || true
+                            docker stop \$(docker ps -q --filter ancestor=${IMAGE_NAME}:${IMAGE_TAG})
+                            docker rm \$(docker ps -aq --filter ancestor=${IMAGE_NAME}:${IMAGE_TAG})
 
                             docker image prune -f
 
