@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meme Web</title>
+    <style>
+        body {
+            font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+            text-align: center;
+        }
+        h1 {
+            margin-bottom: -15px;
+        }
+        img {
+            max-width: 80%;
+            max-height: 50%;
+        }
+    </style>
+</head>
+<body>
+    <h1>MEME BY: {{ author }}</h1>
+    <p>Subreddit: {{ subreddit }}</p>
+    <img src="{{ meme_image }}" alt="">
+</body>
+</html>

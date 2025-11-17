@@ -1,0 +1,25 @@
+# CRITICAL: Terraform State Files (Gunakan path relatif)
+# File state di dalam folder 'terraform'
+terraform/*.tfstate
+terraform/*.tfstate.*
+
+# CRITICAL: File Variabel Rahasia
+# File tfvars di dalam folder 'terraform'
+terraform/*.tfvars
+terraform/*.tfvars.json
+
+# Cleanup: Cache dan Modul yang Diunduh
+# Direktori .terraform/ di dalam folder 'terraform'
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+
+# Execution Plans
+terraform/*.tfplan
+
+# Jika ada file output kunci privat yang dibuat di root folder
+*.pem
+terraform/*.pem
+*.key
+
+# File metadata yang tidak penting
+.DS_Store
