@@ -5,7 +5,7 @@ WORKDIR /app
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-COPY . .
+COPY --exclude=terraform --exclude=Dockerfile --exclude=Jenkinsfile --exclude=README.md --exclude=.* . .
 
 RUN useradd app
 USER app 
