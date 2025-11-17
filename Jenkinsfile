@@ -14,35 +14,35 @@ pipeline {
     }
 
     stages {
-        // stage('Build Image') {
-        //     steps {
-        //         echo 'Memasuki proses Build Image...'
+        stage('Build Image') {
+            steps {
+                echo 'Memasuki proses Build Image...'
                 
-        //         sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
+                sh "docker build -t ${IMAGE_NAME}:${IMAGE_TAG} ."
                 
-        //         echo 'Image berhasil dibuat'
-        //     }
-        // }
+                echo 'Image berhasil dibuat'
+            }
+        }
 
-        // stage('Push Image to Docker Hub') {
-        //     steps {
-        //         echo 'Memasuki proses Push Image ke Docker Hub...'
+        stage('Push Image to Docker Hub') {
+            steps {
+                echo 'Memasuki proses Push Image ke Docker Hub...'
 
-        //         withCredentials([usernamePassword(
-        //             credentialsId: 'docker-id',
-        //             usernameVariable: 'USER',
-        //             passwordVariable: 'PASS'
-        //         )]) {
-        //             echo 'Login Docker...'
-        //             sh "echo ${PASS} | docker login -u ${DOCKER_USER} --password-stdin"
+                withCredentials([usernamePassword(
+                    credentialsId: 'docker-id',
+                    usernameVariable: 'USER',
+                    passwordVariable: 'PASS'
+                )]) {
+                    echo 'Login Docker...'
+                    sh "echo ${PASS} | docker login -u ${DOCKER_USER} --password-stdin"
 
-        //             echo 'Push image ke Docker Hub...'
-        //             sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
+                    echo 'Push image ke Docker Hub...'
+                    sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
 
-        //             echo 'Image berhasil dipush ke Docker Hub' 
-        //         }
-        //     }
-        // }
+                    echo 'Image berhasil dipush ke Docker Hub' 
+                }
+            }
+        }
         
         stage('Deploy to EC2') {
             steps {
