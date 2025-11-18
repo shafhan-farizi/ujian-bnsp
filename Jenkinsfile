@@ -5,9 +5,6 @@ pipeline {
         IMAGE_NAME = 'shafhan/app-py'
         IMAGE_TAG = 'latest'
 
-        // DOCKER_Conf
-        DOCKER_USER = 'shafhan'
-        
         // EC2 Conf
         EC2_USER = 'ec2-user'
         IP_EC2 = '44.221.83.223'
@@ -34,7 +31,7 @@ pipeline {
                     passwordVariable: 'PASS'
                 )]) {
                     echo 'Login Docker...'
-                    sh "echo ${PASS} | docker login -u ${DOCKER_USER} --password-stdin"
+                    sh "echo $PASS | docker login -u $USER --password-stdin"
 
                     echo 'Push image ke Docker Hub...'
                     sh "docker push ${IMAGE_NAME}:${IMAGE_TAG}"
